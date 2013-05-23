@@ -1,0 +1,3 @@
+<% @listings.each do |listing| %>
+    <%= render :partial => 'listing', :locals => { :listing => listing } %>
+<% end %>

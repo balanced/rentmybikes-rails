@@ -1,0 +1,283 @@
+@pageWidth: 960px;
+@backgroundColor: #eee;
+@darkGray: #4D4D4D;
+@lightGray: #b3b3b3;
+@reallyLightGray: #E6E6E6;
+@bodyFont: 'Helvetica Neue', Arial, sans-serif;
+@lightFontFamily: 'HelveticaNeue-Light', 'Helvetica Neue Light', Arial, sans-serif;
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: auto;
+    width: 960px;
+    font-family: @bodyFont;
+    background-color: @backgroundColor;
+    background-image: url(background.png);
+}
+
+header {
+    margin-bottom: 40px;
+    nav {
+        float: right;
+    }
+    li {
+        display: inline;
+        a {
+            display: inline-block;
+            border-left: 1px solid #ccc;
+            padding-left: 10px;
+        }
+        &:first-child {
+            margin-right: 5px;
+            a {
+                border-left: 0;
+            }
+        }
+        &.selected {
+            a {
+                background-color: @darkGray;
+                color: white;
+            }
+        }
+    }
+    .minor {
+        padding: 10px 20px;
+        height: 20px;
+        nav {
+
+        }
+        li {
+
+        }
+    }
+    .major {
+        height: 55px;
+        background-color: @lightGray;
+        border-bottom: 4px solid @darkGray;
+        background-image: url(header.png);
+        padding: 0 20px;
+        h1 {
+            a {
+                float: left;
+                position: relative;
+                bottom: -25px;
+                height: 23px;
+                width: 131px;
+                background: url(logo.png) 0 0 no-repeat;
+                text-indent: -4000px;
+            }
+        }
+        nav {
+            position: relative;
+            bottom: -17px;
+        }
+        a {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            background-color: white;
+            padding: 10px 20px;
+            color: @lightGray;
+            text-transform: lowercase;
+        }
+    }
+}
+
+footer {
+    text-align: center;
+}
+
+.box {
+    background-color: white;
+    padding: 5px;
+    margin-bottom: 40px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    padding-bottom: 30px;
+}
+
+
+form {
+    label {
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: lowercase;
+        margin-bottom: 0;
+    }
+}
+
+#main {
+    h1 {
+        text-transform: lowercase;
+        padding: 20px;
+        font-weight: 200;
+        font-size: 24px;
+    }
+}
+
+.swell {
+    padding-left: 20px;
+}
+
+.bike {
+    padding-bottom: 5px;
+    .title {
+        width: 467px;
+        height: 175px;
+        display: table-cell;
+        vertical-align: bottom;
+        h2 {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-transform: lowercase;
+            font-family: @lightFontFamily;
+            font-weight: 100;
+            padding: 11px 20px;
+            line-height: 1;
+        }
+    }
+    .body {
+        display: table-cell;
+    }
+    .description {
+        display: table-cell;
+        vertical-align: middle;
+        height: 129px;
+        p {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0 20px;
+            width: 461px / 3 * 2;
+            border-right: 1px solid @reallyLightGray;
+        }
+        .price {
+            display: table-cell;
+            padding: 0 20px;
+            text-align: center;
+            color: @lightGray;
+            font-size: 20px;
+            vertical-align: middle;
+            span {
+                padding-bottom: 10px;
+                display: block;
+                font-size: 45px;
+                color: @darkGray;
+            }
+        }
+    }
+    .info {
+        vertical-align: bottom;
+        background-color: @reallyLightGray;
+        padding: 5px 5px 5px 20px;
+        div {
+            display: table-cell;
+            text-align: left;
+            width: 461px / 3;
+            font-size: 12px;
+            vertical-align: middle;
+            strong {
+                display: block;
+                text-transform: uppercase;
+                font-size: 11px;
+                color: #000;
+            }
+            &:last-child {
+                text-align: right;
+            }
+        }
+    }
+    .btn {
+        font-size: 16px;
+        text-transform: lowercase;
+        padding: 8px 20px;
+    }
+    &.road {
+        .title {
+            background-image: url(road.jpg)
+        }
+    }
+    &.hybrid {
+        .title {
+            background-image: url(hybrid.jpg)
+        }
+    }
+    &.touring {
+        .title {
+            background-image: url(touring.jpg)
+        }
+    }
+    &.fixie {
+        .title {
+            background-image: url(fixie.jpg)
+        }
+    }
+}
+
+
+.loading, .interstitial {
+    position: absolute;
+    width: 400px;
+    background-color: white;
+    border: 1px solid #CCC;
+    padding: 20px;
+    border-radius: 1px;
+    box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.1);
+    left: 216px;
+    p {
+        text-align: center;
+    }
+}
+
+.btn {
+    font-size: 15px;
+}
+
+.alert-absolute {
+    position: absolute;
+    width: 400px;
+}
+
+.interstitial {
+    img {
+        display: block;
+        margin: 10px auto 25px;
+        width: 350px;
+        height: 42px;
+    }
+    .progress {
+        height: 10px;
+        border-radius: 0;
+        .bar {
+            height: 10px;
+        }
+    }
+    &.focussed {
+        position: relative;
+        margin-bottom: 40px;
+        left: 273px;
+    }
+}
+
+#github {
+    display: none;
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 0;
+    }
+}
+
+fieldset {
+    legend {
+        font-size: 13px;
+        line-height: 1.2em;
+        span {
+            font-size: 0.8em;
+        }
+    }
+}
