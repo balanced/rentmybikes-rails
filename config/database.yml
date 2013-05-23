@@ -1,0 +1,25 @@
+development:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: rentmybike_dev
+  pool: 5
+  username:
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: rentmybike_test
+  pool: 5
+
+# Add the below...
+
+production:
+  adapter: postgresql
+  host: localhost
+  encoding: unicode
+  database: rentmybike_production
+  pool: 5
+  username:
+  password:

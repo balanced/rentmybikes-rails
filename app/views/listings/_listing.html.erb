@@ -1,0 +1,27 @@
+<div class="box bike <%= listing.bicycle_type %>">
+    <div class="title">
+        <h2><%= listing.title %></h2>
+    </div>
+    <div class="body">
+        <div class="description">
+            <p><%= listing.description %></p>
+            <div class="price">
+                <span><%= listing.price ? listing.price/100 : 10 %></span>
+                per day
+            </div>
+        </div>
+        <div class="info">
+            <div>
+                <strong>Location</strong>
+                <span><%= listing.location %></span>
+            </div>
+            <div>
+                <strong>Type</strong>
+                <span><%= listing.bicycle_type %></span>
+            </div>
+            <div>
+            	<%= link_to('Rent this bike', listing_path(listing),:class => 'btn btn-inverse')  %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RentMyBike</title>
+  <script type="text/javascript" src="https://js.balancedpayments.com/v1/balanced.js"></script>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <header>
+        <div class="minor">
+            <nav>
+            <% if user_signed_in? %>
+                <li><%= current_user.email %></li>
+                <li><%= link_to('Log out', destroy_user_session_path) %></li>
+            <% else %>
+                <li><%= link_to('log in', new_user_session_path) %></li>
+                <li><%= link_to('sign up', new_user_registration_path) %></li>
+            <% end %>
+            </nav>
+        </div>
+        <div class="major">
+            <h1><a href="/">Rent My Bike</a></h1>
+            <nav>
+                <li class="selected"><a href="/">Rent a Bike</a></li>
+                <li><%= link_to('list a bike', new_listing_path) %></li>
+            </nav>
+        </div>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+<section id="main">
+    <%= yield %>
+</section>
+<footer>
+    <div>
+	   <p>Copyright &copy; 2013. <a href="https://www.balancedpayments.com/">Balanced</a>.</p>
+	</div>
+</footer>
+    <a href="https://github.com/balanced/rentmybikes" id="github">
+    	<img src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+    <iframe src="https://js.balancedpayments.com/proxy#https%3A%2F%2Fwww.rentmybike.co%2Frent%2F1" name="balancedFrame1369164291198" id="balancedFrame1369164291198" frameborder="0" scrolling="no" allowtransparency="true" width="0" height="0" style="position:absolute;top:0;left:0;width:0;height:0"></iframe>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<%= render :partial => 'listing', :locals => { :listing => @listing } %>
+<% if user_signed_in? %>
+	<%= render :partial => 'checkout', :locals => { :listing => @listing, :user => current_user } %>
+<% else %>
+	<%= render :partial => 'guest_checkout', :locals => { :listing => @listing } %>
+<% end %>

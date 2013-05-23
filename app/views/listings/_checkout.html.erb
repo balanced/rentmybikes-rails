@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="span7 box">
+        <h1>Checkout</h1>
+        <div class="span6 offset1">
+            <%= form_tag({:controller => 'rentals', :action => 'create', :method => 'post'},{:id => 'purchase'}) do %>
+            <%= hidden_field_tag(:"guest-name", user.name) %>
+            <%= hidden_field_tag(:"guest-email_address", user.email) %>
+            <fieldset class="control-group">
+                <%= label_tag(:"guest-card_number", "Credit Card Number") %>
+                <div class="controls">
+                    <%= text_field_tag(:"guest-card_number", nil,  :class => 'span5', :id => 'guest-card_number', :autofocus => "autofocus") %>
+                </div>
+            </fieldset>
+            <div class="control-group">
+                <%= label_tag(:expiration_month, 'Expiration Date') %>
+            <%= select_tag(:"guest-expiration_month", options_for_select(1.upto(12).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-expiration_month') %>
+            <%= select_tag(:"guest-expiration_year", options_for_select(2012.upto(2022).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-expiration_year') %>
+            </div>
+            <%= hidden_field_tag(:listing_id, @listing.id) %>
+            <div class="actions">
+                <%= submit_tag("Rent") %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>
