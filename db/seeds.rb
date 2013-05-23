@@ -61,7 +61,7 @@ listing4 = Listing.create(:user_id => 1,
                           :title => "roberts cycles clubman",
                           :price => 1000,
                           :bicycle_type => "touring",
-                          :description => "TThe Clubman is tough enough, yet
+                          :description => "The Clubman is tough enough, yet
                           comfortable enough for regular commuting. The tubing
                           is slightly heavier-duty than the Audax to take larger
                           panniers. Tubing is Reynolds 853 & 725 with 531 Forks.",
