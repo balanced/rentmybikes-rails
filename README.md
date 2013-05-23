@@ -1,6 +1,8 @@
 rentmybike
 ===
 
+[![Code Climate](https://codeclimate.com/github/balanced/rentmybikes-rails.png)](https://codeclimate.com/github/balanced/rentmybikes-rails)
+
 Reference implementation of [Balanced](https://www.balancedpayments.com) for
 collecting and charging credit cards, and collecting and crediting bank accounts.
 
