@@ -1,0 +1,70 @@
+<%= render :partial => 'listing', :locals => { :listing => Listing.find(rand(Listing.all.length)+1)} %>
+<div class="row">
+    <div class="span7 box">
+        <h1>List your bike</h1>
+        <div class="span6 offset1">
+            <%= form_tag({:controller => 'listings', :action => 'create', :method => 'post'},{:id => 'kyc'}) do %>
+            <p>I already have an account.
+                <%= link_to('Sign me in', user_session_path) %>
+            </p>
+            <fieldset class="control-group">
+                <%= label_tag(:"guest-name", 'Name', :class => 'control-label') %>
+                <div class="controls">
+                    <%= text_field_tag(:"guest-name", nil,  :class => 'span5', :id => 'guest-name', :autofocus => "autofocus") %>
+                </div>
+            </fieldset>
+            <fieldset class="control-group">
+                <%= label_tag(:"guest-email_address", 'Email', :class => 'control-label') %>
+                <div class="controls">
+                    <%= text_field_tag(:"guest-email_address", nil,  :class => 'span5', :id => 'guest-email_address') %>
+                </div>
+            </fieldset>
+            <fieldset class="control-group">
+                <%= label_tag(:"guest-street_address", 'Home Address', :class => 'control-label') %>
+                <div class="controls">
+                    <%= text_field_tag(:"guest-street_address", nil,  :class => 'span5', :id => 'guest-street_address') %>
+                </div>
+            </fieldset>
+            <fieldset class="control-group">
+                <%= label_tag(:"guest-postal_code", 'Zip Code', :class => 'control-label') %>
+                <div class="controls">
+                    <%= text_field_tag(:"guest-postal_code", nil,  :class => 'span5', :id => 'guest-postal_code') %>
+                </div>
+            </fieldset>
+            <%= hidden_field_tag(:"guest-state", nil, :id => 'guest-state') %>
+            <%= hidden_field_tag(:"guest-country_code", 'USA', :id => 'guest-country_code') %>
+            <fieldset class="control-group">
+                <%= label_tag(:"guest-phone_number", 'Phone Number', :class => 'control-label') %>
+                <div class="controls">
+                    <%= text_field_tag(:"guest-phone_number", nil,  :class => 'span5', :id => 'guest-phone_number') %>
+                </div>
+            </fieldset>
+            <div class="control-group">
+                <%= label_tag(:date_of_birth_month, 'Date of Birth') %>
+            <%= select_tag(:"guest-date_of_birth_month", options_for_select(1.upto(12).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-date_of_birth_month') %>
+            <%= select_tag(:"guest-date_of_birth_year", options_for_select(1900.upto(1993).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-date_of_birth_year') %>
+            </div>
+            <fieldset>
+                <legend>
+                    Add your bank account
+                    <span>(optional)</span>
+                </legend>
+                <fieldset class="control-group">
+                    <%= label_tag(:account_number, 'Account Number', :class => 'control-label') %>
+                    <div class="controls">
+                        <%= text_field_tag(:account_number, nil, :id => 'account_number') %>
+                    </div>
+                </fieldset>
+                <div class="control-group">
+                    <%= label_tag(:bank_code, 'Routing Number') %>
+                    <%= text_field_tag(:bank_code, nil, :id => 'bank_code') %>
+                    <span id="bank-code-result"></span>
+                </div>
+            </fieldset>
+            <div class="actions">
+                <%= submit_tag("Save") %>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

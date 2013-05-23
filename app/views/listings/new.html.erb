@@ -1,0 +1,5 @@
+<% if user_signed_in? %>
+	<%= render :partial => 'new_listing', :locals => { :user => current_user } %>
+<% else %>
+	<%= render :partial => 'guest_new_listing' %>
+<% end %>
