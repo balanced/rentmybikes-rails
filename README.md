@@ -13,6 +13,10 @@ If you'd like to deploy signup for a [Heroku](http://www.heroku.com/signup)
 account if you dont already have one and install [Toolbelt]
 (https://toolbelt.heroku.com/).
 
+Live Site
+---
+[http://rentmybike-rails.herokuapp.com](http://rentmybike-rails.herokuapp.com)
+
 Resources
 ---
 * [Balanced Ruby Client](https://github.com/balanced/balanced-ruby)
