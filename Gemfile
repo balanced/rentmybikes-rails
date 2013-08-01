@@ -43,4 +43,4 @@ end
 
 gem 'balanced'
 
-gem 'quiet_assets', :group => :development
+gem 'quiet_assets', group: :development
