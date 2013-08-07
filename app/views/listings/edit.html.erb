@@ -1,0 +1,21 @@
+<%= render :partial => 'listing', :locals => { :listing => @listing} %>
+<div class="row">
+    <div class="span7 box">
+        <h1>List your bike</h1>
+        <div class="span6 offset1">
+            <%= form_for @listing do |f| %>
+                <%= f.label(:title, 'Listing Title', :class => 'control-label') %>
+                <%= f.text_field(:title, :class => 'span5', :id => 'listing-title') %>
+                <%= f.label(:description, 'Listing Description', :class => 'control-label') %>
+                <%= f.text_area(:description, :class => 'span5', :id => 'listing-description') %>
+                <%= f.label(:location, 'Location', :class => 'control-label') %>
+                <%= f.text_field(:location, :class => 'span5', :id => 'listing-location') %>
+                <%= f.label(:bicycle_type, 'Bike Type', :class => 'control-label') %>
+                <%= f.select(:bicycle_type, options_for_select(["fixie", "hybrid", "road", "touring"]), :class => 'span5', :id => 'listing-bike-type') %>
+                <%= f.label(:price, 'Rental Price (in Dollars)', :class => 'control-label') %>
+                <%= f.text_field(:price, :value => (f.object.price.to_i)/100, :class => 'span5', :id => 'listing-rent-price') %>
+                <%= f.submit("Update Listing") %>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,9 @@
                 <span><%= listing.bicycle_type %></span>
             </div>
             <div>
+                <% if user_signed_in? && current_user.listings.include?(listing) %>
+                    <%= link_to('Edit this listing', edit_listing_path(listing),:class => 'btn')  %>                   
+                <% end %>
             	<%= link_to('Rent this bike', listing_path(listing),:class => 'btn btn-inverse')  %>
             </div>
         </div>
