@@ -1,3 +1,1 @@
-
-BALANCED_SECRET = '54cb4ff6c29811e2b033026ba7cd33d0'
-Balanced.configure(BALANCED_SECRET)
+Balanced.configure(ENV['BALANCED_SECRET'])
