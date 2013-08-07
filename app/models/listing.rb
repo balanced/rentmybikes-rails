@@ -18,7 +18,7 @@ class Listing < ActiveRecord::Base
     # debit buyer amount of listing
 
     debit = renter.debit(
-        :amount => self.price,
+        :amount => self.price*100,
         :description => self.description,
         :on_behalf_of => owner,
     )

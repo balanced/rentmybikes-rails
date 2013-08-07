@@ -30,21 +30,22 @@ Install
     $ git clone https://github.com/balanced/rentmybikes-rails.git
     $ cd rentmybikes
     $ bundle install
+    $ rake db:create
     $ rake db:migrate
-    $ rake db:seed (if you want to seed database)
+    $ foreman run rake db:seed (if you want to seed database - also requires foreman gem)
 
 
 Configure
 ---
 
-Edit the following in `rentmybike/config/initializers/app_constants.rb`:
+Create an .env file for the app by renaming .env.sample to .env
 
 * Set `BALANCED_SECRET` to your secret key. Get one from [Balanced] (https://www.balancedpayments.com/marketplaces/start) if you dont have one.
 
 Example:
 
 ```ruby
-BALANCED_SECRET = 'your-balanced-secret'
+BALANCED_SECRET='your-balanced-secret'
 ```
 
 Edit the following in `rentmybike/config/initializers/devise.rb`:

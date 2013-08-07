@@ -13,6 +13,7 @@
             <nav>
             <% if user_signed_in? %>
                 <li><%= current_user.email %></li>
+                <li><%= link_to('Edit Account', edit_user_registration_path(current_user)) %></li>
                 <li><%= link_to('Log out', destroy_user_session_path) %></li>
             <% else %>
                 <li><%= link_to('log in', new_user_session_path) %></li>
