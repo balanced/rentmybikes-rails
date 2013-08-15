@@ -38,9 +38,9 @@ gem 'therubyracer'
 gem 'less-rails'
 
 group :development do
+  gem 'quiet_assets'
   gem 'debugger'
+  gem 'foreman'
 end
 
 gem 'balanced'
-
-gem 'quiet_assets', group: :development
