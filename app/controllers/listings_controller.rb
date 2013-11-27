@@ -70,11 +70,11 @@ class ListingsController < ApplicationController
 
 private
   def require_sign_in
-    raise "Access Denied" unless (user_signed_in? && current_user.present?)
+    head :forbidden unless (user_signed_in? && current_user.present?)
   end
   
   def listing_owner_required
-    raise "Access Denied" unless (@listing.present? && user_signed_in? && @listing.users.include?(current_user))
+    head :forbidden unless (@listing.present? && user_signed_in? && @listing.users.include?(current_user))
   end
 
 end
