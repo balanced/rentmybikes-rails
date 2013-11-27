@@ -255,7 +255,7 @@
             balanced.init(options.marketplaceUri);
             $('form#purchase').submit(submitPurchase);
             $('form#kyc').submit(submitKYC);
-            $('[data-dismiss="alert"]').live('click', function (e) {
+            $('[data-dismiss="alert"]').on('click', function (e) {
                 $(this).closest('.alert').fadeOut('fast');
                 resetForm();
                 e.preventDefault();
