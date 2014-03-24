@@ -48,6 +48,15 @@ Example:
 BALANCED_SECRET='your-balanced-secret'
 ```
 
+* Set `BALANCED_MARKETPLACE_URI` to your marketplace. Get one from [Balanced] (https://www.balancedpayments.com/marketplaces/start) if you dont have one.
+
+Example:
+
+```ruby
+BALANCED_MARKETPLACE_URI='/v1/marketplaces/your-test-marketplace'
+```
+
+
 Edit the following in `rentmybike/config/initializers/devise.rb`:
 
 * Configure the e-mail address which will be shown in Devise::Mailer

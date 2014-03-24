@@ -41,6 +41,7 @@ group :development do
   gem 'quiet_assets'
   gem 'debugger'
   gem 'foreman'
+  gem 'dotenv-rails'
 end
 
 gem 'balanced'
