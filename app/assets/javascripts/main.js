@@ -55,6 +55,7 @@
         }
         if (!balanced.card.isExpiryValid(cardData.expiration_month, cardData.expiration_year)) {
             addErrorToField($form, 'expiration_month');
+            addErrorToField($form, 'expiration_year');
         }
 
         if ($form.find('.control-group.error').length) {
