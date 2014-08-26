@@ -16,9 +16,11 @@ bank_account = Balanced::BankAccount.new(
                  routing_number: '011500337',
                  name: 'Jimbo Jenkins',
                  account_type: 'checking'
-               )
+               ).save
 
 bank_account.associate_to_customer(owner)
+user.bank_account_href = bank_account.href
+user.save
 
 listing1 = Listing.create(user_id: 1,
                           title: "panasonic fixie",
@@ -28,8 +30,7 @@ listing1 = Listing.create(user_id: 1,
                           a nice new chrome fork, aluminum bars, nice aluminum
                           stem, weinman singlespeed/fixed wheel set (velocity
                           style rims).",
-                          location: "Palo Alto, CA",
-                          owner_uri: owner.href)
+                          location: "Palo Alto, CA")
 
 listing2 = Listing.create(user_id: 1,
                           title: "cosmic cx 1.0",
@@ -41,8 +42,7 @@ listing2 = Listing.create(user_id: 1,
                           forks feature lock out and pre load adjustment-useful
                           if you are riding along the road to work,
                           or to the race.",
-                          location: "San Francisco, CA",
-                          owner_uri: owner.href)
+                          location: "San Francisco, CA")
 
 listing3 = Listing.create(user_id: 1,
                           title: "myata vintage road bike",
@@ -52,8 +52,7 @@ listing3 = Listing.create(user_id: 1,
                           a lugged, triple-butted, CroMo frame. A solid ride with
                           a tight race geometry to keep it quick and easy to
                           handle.",
-                          location: "San Francisco, CA",
-                          owner_uri: owner.href)
+                          location: "San Francisco, CA")
 
 listing4 = Listing.create(user_id: 1,
                           title: "roberts cycles clubman",
@@ -63,6 +62,5 @@ listing4 = Listing.create(user_id: 1,
                           comfortable enough for regular commuting. The tubing
                           is slightly heavier-duty than the Audax to take larger
                           panniers. Tubing is Reynolds 853 & 725 with 531 Forks.",
-                          location: "San Francisco, CA",
-                          owner_uri: owner.href)
+                          location: "San Francisco, CA")
 
