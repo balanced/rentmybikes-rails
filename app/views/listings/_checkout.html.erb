@@ -2,23 +2,33 @@
     <div class="span7 box">
         <h1>Checkout</h1>
         <div class="span6 offset1">
-            <%= form_tag({:controller => 'rentals', :action => 'create', :method => 'post'},{:id => 'purchase'}) do %>
+            <%= form_tag({:controller => 'rentals', :action => 'create', :method => 'post'}, {:id => 'purchase'}) do %>
             <%= hidden_field_tag(:"guest-name", user.name) %>
             <%= hidden_field_tag(:"guest-email_address", user.email) %>
-            <fieldset class="control-group">
-                <%= label_tag(:"guest-card_number", "Credit Card Number") %>
-                <div class="controls">
-                    <%= text_field_tag(:"guest-card_number", nil,  :class => 'span5', :id => 'guest-card_number', :autofocus => "autofocus") %>
-                </div>
-            </fieldset>
-            <div class="control-group">
-                <%= label_tag(:expiration_month, 'Expiration Date') %>
-            <%= select_tag(:"guest-expiration_month", options_for_select(1.upto(12).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-expiration_month') %>
-            <%= select_tag(:"guest-expiration_year", options_for_select(2012.upto(2022).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-expiration_year') %>
+            <div>
+              <label>Name on Card</label>
+              <input type="text" id="guest-name" name="guest-name" autocomplete="off" />
+            </div>
+            <div>
+              <label>Card Number</label>
+              <input type="text" id="guest-number" name="guest-number" autocomplete="off" maxlength="16" />
+            </div>
+            <div>
+              <label>Expiration</label>
+              <%= select_tag(:"guest-expiration_month", options_for_select(1.upto(12).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-expiration_month') %>
+              <%= select_tag(:"guest-expiration_year", options_for_select(Time.now.year.upto(Time.now.year+10).map{ |num| [num,num] }), :class => 'span1', :id => 'guest-expiration_year') %>
+            </div>
+            <div>
+              <label>Card Verification Code (CVV)</label>
+              <input type="text" id="guest-cvv" name="guest-cvv" class="span1" autocomplete="off" maxlength="4" />
+            </div>
+            <div>
+              <label>Postal Code</label>
+              <input type="text" id="guest-postal_code" name="guest-postal_code" class="span1" autocomplete="off" />
             </div>
             <%= hidden_field_tag(:listing_id, @listing.id) %>
-            <div class="actions">
-                <%= submit_tag("Rent") %>
+            <div>
+                <%= submit_tag 'Rent', class: 'btn-primary' %>
             </div>
             <% end %>
             <a href="https://www.balancedpayments.com"><img src="https://balancedpowered.s3.amazonaws.com/secured-1-1.png" alt="Secured by Balanced"></a>
