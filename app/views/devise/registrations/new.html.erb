@@ -1,35 +1,23 @@
 <div class="row">
   <div class="span7 box">
     <h1>Create your account</h1>
-    <div class="span6 offset1">
-      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-      <fieldset class="control-group">
-        <%= f.label :name, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :name, :class => 'span5', :id => 'account-name', :autofocus => "autofocus" %>
-        </div>
-      </fieldset>
-      <fieldset class="control-group">
-        <%= f.label :email %>
-        <div class="controls">
-          <%= f.email_field :email, :class => 'span5', :id => 'account-email_address' %>
-        </div>
-      </fieldset>
-      <fieldset class="control-group">
-        <%= f.label :password %>
-        <div class="controls">
-          <%= f.password_field :password, :class => 'span5', :id => 'account-password' %>
-        </div>
-      </fieldset>
-      <fieldset class="control-group">
-      <%= f.label :password_confirmation %>
-      <div class="controls">
-        <%= f.password_field :password_confirmation, :class => 'span5', :id => 'account-password_confirmation' %>
-      </div>
-      </fieldset>
-      <div class="actions"><%= f.submit "Save" %></div>
+    <div class="span6">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+      
+        <div><%= f.label :email %><br />
+        <%= f.email_field :email %></div>
+
+        <div><%= f.label :password %><br />
+        <%= f.password_field :password %></div>
+
+        <div><%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %></div>
+
+        <div><%= f.submit 'Sign up', class: 'btn-primary' %></div>
       <% end %>
+      
+      <%= render partial: 'devise/shared/links' %>
     </div>
   </div>
 </div>
