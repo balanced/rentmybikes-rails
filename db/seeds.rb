@@ -4,9 +4,6 @@ user = User.create(email: 'asdf@asdf.com',
                    password: 'asdfasdf',
                    password_confirmation: 'asdfasdf')
 
-# generate marketplace object from Balanced Ruby client
-marketplace = Balanced::Marketplace.mine
-
 # create a bicycle owner
 owner = user.balanced_customer
 

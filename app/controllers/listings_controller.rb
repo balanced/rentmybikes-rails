@@ -11,7 +11,6 @@ class ListingsController < ApplicationController
   end
 
   def create
-    marketplace = Balanced::Marketplace.mine
     owner_customer = current_user.balanced_customer
     bank_account_href = params[:bank_account_href]
 
@@ -46,7 +45,7 @@ class ListingsController < ApplicationController
   def update
     @listing = current_user.listings.find(params[:id])
     if @listing.update_attributes(params[:listing])
-      @listing.price = @listing.price*100
+      @listing.price = @listing.price * 100
       @listing.save!
       flash[:notice] = "Listing updated successfully."
       redirect_to listing_path(@listing)

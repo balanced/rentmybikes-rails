@@ -13,7 +13,7 @@ class Listing < ActiveRecord::Base
     # TODO: if a renter already has a valid card, then, use that to charge
     # otherwise, the card_uri should be used as the source
 
-    card = Balanced::Card.fetch(params[:card_uri])
+    card = Balanced::Card.fetch(params[:card_href])
     card.associate_to_customer(renter)
 
     # debit buyer amount of listing
