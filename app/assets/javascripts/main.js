@@ -143,10 +143,10 @@
         }
 
         var hasBankAccount = false;
-        if (merchantData.account_number || merchantData.bank_code) {
+        if (merchantData.account_number || merchantData.routing_number) {
             hasBankAccount = true;
-            if (!balanced.bankAccount.validateRoutingNumber(merchantData.bank_code)) {
-                addErrorToField($form, 'bank_code');
+            if (!balanced.bankAccount.validateRoutingNumber(merchantData.routing_number)) {
+                addErrorToField($form, 'routing_number');
             }
             if (!merchantData.account_number) {
                 addErrorToField($form, 'account_number');
@@ -162,17 +162,18 @@
             e.preventDefault();
             disableForm($form);
             showProcessing('Adding bank account...', 33);
-            balanced.bankAccount.create(merchantData, onCardTokenized);
+            balanced.bankAccount.create(merchantData, onBankAccountTokenized);
         }
     };
-    var onCardTokenized = function (response) {
+    var onBankAccountTokenized = function (response) {
         var $form = $('#kyc');
         hideProcessing();
-        switch (response.status) {
+        console.log(response);
+        switch (response.status_code) {
             case 201:
                 $form.find('input,select').removeAttr('disabled');
                 showProcessing('Performing identity check...', 66);
-                $('<input type="hidden" name="bank_account_uri" value="' + response.data.uri + '">').appendTo($form);
+                $('<input type="hidden" name="bank_account_href" value="' + response.bank_accounts[0].href + '">').appendTo($form);
                 $form.unbind('submit', submitKYC).submit();
             //  todo - what if we have a 409?
         }
