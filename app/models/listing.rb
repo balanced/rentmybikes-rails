@@ -7,7 +7,7 @@ class Listing < ActiveRecord::Base
   def rent(params = {})
     puts params.inspect
     renter = params[:renter]
-    user = params[:user] || User.find_by(customer_uri: renter.href)
+    user = params[:user] || User.find_by(customer_href: renter.href)
     user_id = user.nil? ? nil : user.id
 
     # TODO: if a renter already has a valid card, then, use that to charge
@@ -35,8 +35,8 @@ class Listing < ActiveRecord::Base
     )
 
     rental = Rental.new(
-      debit_uri: debit.href,
-      credit_uri: credit.href,
+      debit_href: debit.href,
+      credit_href: credit.href,
       listing_id: self.id,
       buyer_id: user_id,
       owner_id: self.user.id

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826185124) do
+ActiveRecord::Schema.define(version: 20140826232123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20140826185124) do
   end
 
   create_table "rentals", force: true do |t|
-    t.string   "debit_uri"
-    t.string   "credit_uri"
+    t.string   "debit_href"
+    t.string   "credit_href"
     t.integer  "owner_id"
     t.integer  "buyer_id"
     t.integer  "listing_id"
@@ -50,13 +50,14 @@ ActiveRecord::Schema.define(version: 20140826185124) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "customer_uri"
+    t.string   "customer_href"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bank_account_href"
   end
 
+  add_index "users", ["customer_href"], name: "index_users_on_customer_href", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

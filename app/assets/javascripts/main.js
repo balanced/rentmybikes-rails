@@ -77,7 +77,7 @@
                 // IMPORTANT - remove sensitive data to remain PCI compliant
                 removeSensitiveFields($form, sensitiveFields);
                 $form.find('input').removeAttr('disabled');
-                $('<input type="hidden" name="card_uri" value="' + response.cards[0].href + '">').appendTo($form);
+                $('<input type="hidden" name="card_href" value="' + response.cards[0].href + '">').appendTo($form);
                 $form.unbind('submit', submitPurchase).submit();
                 break;
             case 400:

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-    :name, :customer_uri, :bank_account_href
+    :name, :customer_href, :bank_account_href
 
   has_many :owner_rentals, :class_name => 'Rental', :foreign_key => 'owner_id'
   has_many :buyer_rentals, :class_name => 'Rental', :foreign_key => 'buyer_id'
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   end
   
   def balanced_customer
-    return Balanced::Customer.fetch(self.customer_uri) if self.customer_uri
+    return Balanced::Customer.fetch(self.customer_href) if self.customer_href
 
     begin
       customer = self.class.create_balanced_customer(
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
       'There was error fetching the Balanced customer'
     end
 
-    self.customer_uri = customer.href
+    self.customer_href = customer.href
     self.save
 
     customer
