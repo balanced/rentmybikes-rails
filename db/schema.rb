@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826232123) do
+ActiveRecord::Schema.define(version: 20140902210522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,12 @@ ActiveRecord::Schema.define(version: 20140826232123) do
   end
 
   create_table "rentals", force: true do |t|
-    t.string   "debit_href"
-    t.string   "credit_href"
     t.integer  "owner_id"
     t.integer  "buyer_id"
     t.integer  "listing_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "order_href"
   end
 
   create_table "users", force: true do |t|
