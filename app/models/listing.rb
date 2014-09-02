@@ -5,7 +5,6 @@ class Listing < ActiveRecord::Base
   attr_accessible :name, :user_id, :location, :title, :description, :bicycle_type, :price
 
   def rent(params = {})
-    puts params.inspect
     renter = params[:renter]
     user = params[:user] || User.find_by(customer_href: renter.href)
     user_id = user.nil? ? nil : user.id
