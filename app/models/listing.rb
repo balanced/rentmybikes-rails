@@ -10,35 +10,42 @@ class Listing < ActiveRecord::Base
     user_id = user.nil? ? nil : user.id
 
     # TODO: if a renter already has a valid card, then, use that to charge
-    # otherwise, the card_uri should be used as the source
+    # otherwise, the card_href should be used as the source
 
     card = Balanced::Card.fetch(params[:card_href])
     card.associate_to_customer(renter)
 
-    # debit buyer amount of listing
-    debit = card.debit(
-        amount: self.price,
-        description: self.description
-        #on_behalf_of: owner, # we'll replace this with the Order resource soon
+    # create an Order
+    order = self.user.balanced_customer.create_order(
+      description: self.description
     )
 
-    # credit owner of bicycle amount of listing.
+    # debit the buyer for the amount of the listing
+    order.debit_from(
+      source: card,
+      amount: self.price,
+      description: self.description,
+      appears_on_statement_as: 'RentMyBike Rental'
+    )
+
+    # credit the owner of bicycle for the amount of listing
     # 
     # since this is an example, we're showing how to issue a credit
     # immediately. normally you should wait for order fulfillment
     # before crediting.
 
-    credit = self.user.balanced_bank_account.credit(
+    order.credit_to(
+      destination: self.user.balanced_bank_account,
       amount: self.price,
-      description: self.description
+      description: self.description,
+      appears_on_statement_as: 'RMyBike Payout'
     )
 
     rental = Rental.new(
-      debit_href: debit.href,
-      credit_href: credit.href,
       listing_id: self.id,
       buyer_id: user_id,
-      owner_id: self.user.id
+      owner_id: self.user.id,
+      order_href: order.href
     )
     rental.save
   end
