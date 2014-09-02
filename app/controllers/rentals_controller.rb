@@ -1,10 +1,6 @@
 class RentalsController < ApplicationController
 
   def create
-    # initialize marketplace
-
-    marketplace = Balanced::Marketplace.my_marketplace
-
     # user represents a user in our database who wants to rent a bicycle
     # buyer is a Balanced::Customer object that knows about payment information for user
     # or guest who wants to rent a bicycle
@@ -19,11 +15,11 @@ class RentalsController < ApplicationController
       buyer = User.create_balanced_customer(
         :name  => params[:"guest-name"],
         :email => params[:"guest-email_address"]
-        )
+      )
     end
 
     listing = Listing.find(params[:listing_id])
-    listing.rent(:renter => buyer, :card_uri => params[:card_uri])
+    listing.rent(renter: buyer, card_href: params[:card_href])
     render :confirmation
   end
 

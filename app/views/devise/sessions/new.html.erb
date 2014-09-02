@@ -1,23 +1,22 @@
 <div class="row">
   <div class="span7 box">
     <h1>Sign in</h1>
-    <div class="span6 offset1">
-      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-      <fieldset class="control-group">
-        <%= f.label :email, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :email, :class => 'span5', :id => 'account-email_address', :autofocus => "autofocus" %>
-        </div>
-      </fieldset>
-      <fieldset class="control-group">
-        <%= f.label :password, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.password_field :password, :class => 'span5', :id => 'account-password' %>
-        </div>
-      </fieldset>
-      <div class="actions"><%= f.submit "Sign in" %></div>
+    <div class="span6">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div><%= f.label :email %><br />
+        <%= f.email_field :email %></div>
+
+        <div><%= f.label :password %><br />
+        <%= f.password_field :password %></div>
+
+        <div><%= f.submit "Sign in", class: 'btn-primary' %></div>
       <% end %>
+
+      <%= render partial: 'devise/shared/links' %>
     </div>
   </div>
 </div>
+
+
+
+

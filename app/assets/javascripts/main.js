@@ -50,8 +50,8 @@
         if (!balanced.emailAddress.validate(emailAddress)) {
             addErrorToField($form, 'email_address');
         }
-        if (!balanced.card.isCardNumberValid(cardData.card_number)) {
-            addErrorToField($form, 'card_number');
+        if (!balanced.card.isCardNumberValid(cardData.number)) {
+            addErrorToField($form, 'number');
         }
         if (!balanced.card.isExpiryValid(cardData.expiration_month, cardData.expiration_year)) {
             addErrorToField($form, 'expiration_month');
@@ -62,27 +62,26 @@
             return;
         }
 
-        //  submit
+        // submit
         disableForm($form);
         showProcessing('Processing payment...', 33);
         balanced.card.create(cardData, completePurchase);
     };
     var completePurchase = function (response) {
         var $form = $('form#purchase');
-        var sensitiveFields = ['card_number', 'expiration_month', 'expiration_year'];
-
+        var sensitiveFields = ['number', 'cvv', 'expiration_month', 'expiration_year'];
         hideProcessing();
-        switch (response.status) {
+        switch (response.status_code) {
             case 201:
                 showProcessing('Renting bike...', 66);
-                //  IMPORTANT - remove sensitive data to remain PCI compliant
+                // IMPORTANT - remove sensitive data to remain PCI compliant
                 removeSensitiveFields($form, sensitiveFields);
                 $form.find('input').removeAttr('disabled');
-                $('<input type="hidden" name="card_uri" value="' + response.data.uri + '">').appendTo($form);
+                $('<input type="hidden" name="card_href" value="' + response.cards[0].href + '">').appendTo($form);
                 $form.unbind('submit', submitPurchase).submit();
                 break;
             case 400:
-                var fields = ['card_number', 'expiration_month', 'expiration_year', 'security_code'];
+                var fields = ['number', 'expiration_month', 'expiration_year', 'cvv'];
                 var found = false;
                 for (var i = 0; i < fields.length; i++) {
                     var isIn = response.error.description.indexOf(fields[i]) >= 0;
@@ -96,14 +95,6 @@
                     console.warn('missing field - check response.error for details');
                     console.warn(response.error);
                 }
-                break;
-            case 402:
-                console.warn('we couldn\'t authorize the buyer\'s credit card - check response.error for details');
-                console.warn(response.error);
-                showError('We couldn\'t authorize this card, please check your card details and try again');
-                break;
-            case 404:
-                console.warn('your marketplace URI is incorrect');
                 break;
             case 500:
                 console.error('Balanced did something bad, this will never happen, but if it does please retry the request');
@@ -152,10 +143,10 @@
         }
 
         var hasBankAccount = false;
-        if (merchantData.account_number || merchantData.bank_code) {
+        if (merchantData.account_number || merchantData.routing_number) {
             hasBankAccount = true;
-            if (!balanced.bankAccount.validateRoutingNumber(merchantData.bank_code)) {
-                addErrorToField($form, 'bank_code');
+            if (!balanced.bankAccount.validateRoutingNumber(merchantData.routing_number)) {
+                addErrorToField($form, 'routing_number');
             }
             if (!merchantData.account_number) {
                 addErrorToField($form, 'account_number');
@@ -171,17 +162,18 @@
             e.preventDefault();
             disableForm($form);
             showProcessing('Adding bank account...', 33);
-            balanced.bankAccount.create(merchantData, onCardTokenized);
+            balanced.bankAccount.create(merchantData, onBankAccountTokenized);
         }
     };
-    var onCardTokenized = function (response) {
+    var onBankAccountTokenized = function (response) {
         var $form = $('#kyc');
         hideProcessing();
-        switch (response.status) {
+        console.log(response);
+        switch (response.status_code) {
             case 201:
                 $form.find('input,select').removeAttr('disabled');
                 showProcessing('Performing identity check...', 66);
-                $('<input type="hidden" name="bank_account_uri" value="' + response.data.uri + '">').appendTo($form);
+                $('<input type="hidden" name="bank_account_href" value="' + response.bank_accounts[0].href + '">').appendTo($form);
                 $form.unbind('submit', submitKYC).submit();
             //  todo - what if we have a 409?
         }
@@ -253,7 +245,6 @@
     ctx.rentmybike = {
         init:function (options) {
             _options = options;
-            balanced.init(options.marketplaceUri);
             $('form#purchase').submit(submitPurchase);
             $('form#kyc').submit(submitKYC);
             $('[data-dismiss="alert"]').on('click', function (e) {

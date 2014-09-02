@@ -7,7 +7,6 @@ class CreateListings < ActiveRecord::Migration
       t.integer :price
       t.string :bicycle_type
       t.integer :user_id
-      t.string :owner_uri
       t.string :location
       t.timestamps
     end
