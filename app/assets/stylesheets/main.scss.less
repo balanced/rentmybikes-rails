@@ -15,7 +15,7 @@ body {
     width: 960px;
     font-family: @bodyFont;
     background-color: @backgroundColor;
-    background-image: url(background.png);
+    background-image: asset-url("background.png");
 }
 
 header {
@@ -57,7 +57,7 @@ header {
         height: 55px;
         background-color: @lightGray;
         border-bottom: 4px solid @darkGray;
-        background-image: url(header.png);
+        background-image: asset-url("header.png");
         padding: 0 20px;
         h1 {
             a {
@@ -66,7 +66,7 @@ header {
                 bottom: -25px;
                 height: 23px;
                 width: 131px;
-                background: url(logo.png) 0 0 no-repeat;
+                background: asset-url("logo.png") 0 0 no-repeat;
                 text-indent: -4000px;
             }
         }
@@ -197,22 +197,22 @@ form {
     }
     &.road {
         .title {
-            background-image: url(road.jpg)
+            background-image: asset-url("road.jpg")
         }
     }
     &.hybrid {
         .title {
-            background-image: url(hybrid.jpg)
+            background-image: asset-url("hybrid.jpg")
         }
     }
     &.touring {
         .title {
-            background-image: url(touring.jpg)
+            background-image: asset-url("touring.jpg")
         }
     }
     &.fixie {
         .title {
-            background-image: url(fixie.jpg)
+            background-image: asset-url("fixie.jpg")
         }
     }
 }
